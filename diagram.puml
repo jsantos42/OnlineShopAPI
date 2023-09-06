@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Customer {
+    - string username
+    - Order currentOrder
+    + getUsername()
+    + getCurrentOrder()
+    - placeOrder()
+}
+
+
+abstract class Order {
+    - Product[] products
+    + getProducts()
+    + addProduct()
+    + removeProduct()
+}
+
+
+abstract class Product {
+    - ProductCategory category
+    - int price
+    - string name
+    + getCategory()
+    + getPrice()
+    + getName()
+}
+
+
+abstract class ProductCategory {
+    - name
+    + getName()
+}
+
+class Catalog {
+    - ProductCategory[] categories
+    + getCategories()
+}
+
+
+Customer *-- Order: has
+Order *- Product: has many
+Product *-- ProductCategory: has
+Product --* ProductCategory: has many
+Catalog *- ProductCategory: has many
+
+
+@enduml
