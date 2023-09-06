@@ -30,7 +30,9 @@ abstract class Product {
 
 abstract class ProductCategory {
     - name
+    - Product[] products
     + getName()
+    + getProducts()
 }
 
 class Catalog {
