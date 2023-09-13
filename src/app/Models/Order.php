@@ -9,15 +9,18 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function products() {
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
 
-    public function addProduct(Product $product) {
+    public function addProduct(Product $product)
+    {
         $this->products()->attach($product->id);
     }
 
-    public function removeProduct(Product $product) {
+    public function removeProduct(Product $product)
+    {
         $this->products()->detach($product->id);
     }
 }
