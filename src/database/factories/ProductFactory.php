@@ -19,9 +19,6 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->word,
             'price' => $this->faker->numberBetween(100, 1000),
-            'product_category_id' => function () {
-                return ProductCategoryFactory::new()->create()->id;
-            }
         ];
     }
 }
