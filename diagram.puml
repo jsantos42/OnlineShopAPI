@@ -35,17 +35,11 @@ abstract class ProductCategory {
     + getProducts()
 }
 
-class Catalog {
-    - ProductCategory[] categories
-    + getCategories()
-}
-
 
 Customer *-- Order: has
 Order *- Product: has many
-Product *-- ProductCategory: has
+Product *-- ProductCategory: has many
 Product --* ProductCategory: has many
-Catalog *- ProductCategory: has many
 
 
 @enduml
