@@ -17,10 +17,13 @@ class OrderController extends BaseController
             ->where('customer_id', $id)
             ->first()
             ->products()
-            ->select(['name', 'price'])
             ->get()
-            ->map
-            ->only(['name', 'price'])
+            ->map(fn($product) => [
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => $product->pivot->quantity,
+            ])
         ;
         return response()->json($order);
     }
