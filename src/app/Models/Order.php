@@ -13,14 +13,4 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class)->withPivot('quantity');
     }
-
-    public function addProduct(Product $product)
-    {
-        $this->products()->attach($product->id);
-    }
-
-    public function removeProduct(Product $product)
-    {
-        $this->products()->detach($product->id);
-    }
 }

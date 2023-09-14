@@ -26,3 +26,7 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/categories/{id}', [ProductCategoryController::class, 'index']);
 
 Route::get('/customers/{id}/order', [OrderController::class, 'index']);
+
+Route::get('/customers/{id}/order/addProduct/{productId}', [OrderController::class, 'addProduct']);
+
+Route::get('/customers/{id}/order/removeProduct/{productId}', [OrderController::class, 'removeProduct']);
