@@ -13,7 +13,7 @@ class OrderController extends BaseController
 
     public function index($id)
     {
-        $order = Order::with('products')
+        $orderCurrentProducts = Order::with('products')
             ->where('customer_id', $id)
             ->first()
             ->products()
@@ -25,7 +25,7 @@ class OrderController extends BaseController
                 'quantity' => $product->pivot->quantity,
             ])
         ;
-        return response()->json($order);
+        return response()->json($orderCurrentProducts);
     }
 
     public function addProduct($id, $productId)
