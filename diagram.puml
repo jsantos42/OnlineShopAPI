@@ -3,18 +3,17 @@
 
 abstract class Customer {
     - string username
+    - string email
     - Order currentOrder
-    + getUsername()
-    + getCurrentOrder()
-    - placeOrder()
 }
 
 
 abstract class Order {
     - Product[] products
-    + getProducts()
+    - Boolean placed
     + addProduct()
     + removeProduct()
+    + placeOrder()
 }
 
 
@@ -22,17 +21,12 @@ abstract class Product {
     - ProductCategory category
     - int price
     - string name
-    + getCategory()
-    + getPrice()
-    + getName()
 }
 
 
 abstract class ProductCategory {
     - name
     - Product[] products
-    + getName()
-    + getProducts()
 }
 
 
