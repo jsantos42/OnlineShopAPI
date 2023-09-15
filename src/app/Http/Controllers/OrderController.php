@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendConfirmationEmails;
 use App\Models\Order;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -64,4 +65,25 @@ class OrderController extends BaseController
 
         return response()->json();
     }
+
+    public function placeOrder($id)
+    {
+        Order::with('products')
+            ->where('customer_id', $id)
+            ->update(['placed' => true]);
+
+        SendConfirmationEmails::dispatch($id);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
