@@ -18,6 +18,7 @@ class CustomerFactory extends Factory
     {
         return [
             'username' => $this->faker->userName,
+            'email' => $this->faker->email,
         ];
     }
 }
