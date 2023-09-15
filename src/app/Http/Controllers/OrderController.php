@@ -8,10 +8,19 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
+/**
+ * Controller for order management.
+ */
 class OrderController extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
+    /**
+     * Get a customer's order.
+     *
+     * @param int $id Customer ID
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index($id)
     {
         $orderCurrentProducts = Order::with('products')
@@ -29,6 +38,13 @@ class OrderController extends BaseController
         return response()->json($orderCurrentProducts);
     }
 
+    /**
+     * Add product to customer's order.
+     *
+     * @param int $id Customer ID
+     * @param int $productId Product ID
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function addProduct($id, $productId)
     {
         $order = Order::with('products')
@@ -46,6 +62,13 @@ class OrderController extends BaseController
         return response()->json();
     }
 
+    /**
+     * Remove product from customer's order.
+     *
+     * @param int $id Customer ID
+     * @param int $productId Product ID
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function removeProduct($id, $productId)
     {
         $order = Order::with('products')
@@ -66,6 +89,12 @@ class OrderController extends BaseController
         return response()->json();
     }
 
+    /**
+     * Place customer's order.
+     *
+     * @param int $id Customer ID
+     * @return void
+     */
     public function placeOrder($id)
     {
         Order::with('products')
@@ -75,15 +104,3 @@ class OrderController extends BaseController
         SendConfirmationEmails::dispatch($id);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

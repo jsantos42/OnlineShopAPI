@@ -14,14 +14,24 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
+/**
+ * Job to send order confirmation emails.
+ */
 class SendConfirmationEmails implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /**
+     * The customer ID.
+     *
+     * @var int
+     */
     private $customerId;
 
     /**
      * Create a new job instance.
+     *
+     * @param int $customerId
      */
     public function __construct($customerId)
     {
@@ -29,7 +39,9 @@ class SendConfirmationEmails implements ShouldQueue
     }
 
     /**
-     * Execute the job.
+     * Send the confirmation emails.
+     *
+     * @return void
      */
     public function handle(): void
     {

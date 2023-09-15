@@ -9,14 +9,24 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Class to send order notification email to the warehouse.
+ */
 class WarehouseNotificationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * The order products.
+     *
+     * @var array
+     */
     private $products;
 
     /**
      * Create a new message instance.
+     *
+     * @param array $products
      */
     public function __construct($products)
     {

@@ -9,14 +9,24 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Class to send order confirmation email to client.
+ */
 class ClientConfirmationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * The order products.
+     *
+     * @var array
+     */
     private $products;
 
     /**
      * Create a new message instance.
+     *
+     * @param array $products
      */
     public function __construct($products)
     {
