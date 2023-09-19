@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
@@ -23,17 +22,10 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
 Route::middleware('auth:api')->group(function () {
-
     Route::get('/products', [ProductController::class, 'index']);
-
     Route::get('/categories/{id}', [ProductCategoryController::class, 'index']);
-
     Route::get('/customers/{id}/order', [OrderController::class, 'index']);
-
     Route::post('/customers/{id}/order/addProduct/{productId}', [OrderController::class, 'addProduct']);
-
     Route::post('/customers/{id}/order/removeProduct/{productId}', [OrderController::class, 'removeProduct']);
-
     Route::post('/customers/{id}/order/place', [OrderController::class, 'placeOrder']);
-
 });
