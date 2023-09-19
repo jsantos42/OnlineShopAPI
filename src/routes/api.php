@@ -30,10 +30,10 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/customers/{id}/order', [OrderController::class, 'index']);
 
-    Route::get('/customers/{id}/order/addProduct/{productId}', [OrderController::class, 'addProduct']);
+    Route::post('/customers/{id}/order/addProduct/{productId}', [OrderController::class, 'addProduct']);
 
-    Route::get('/customers/{id}/order/removeProduct/{productId}', [OrderController::class, 'removeProduct']);
+    Route::post('/customers/{id}/order/removeProduct/{productId}', [OrderController::class, 'removeProduct']);
 
-    Route::get('/customers/{id}/order/place', [OrderController::class, 'placeOrder']);
+    Route::post('/customers/{id}/order/place', [OrderController::class, 'placeOrder']);
 
 });
